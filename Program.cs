@@ -11,15 +11,11 @@ namespace KMlinebreaker
         public static void Main()
         {
             Console.WriteLine("** 텍스트 나누기 V1.1.0 **");
-
-            
             string line;
             string output = "";
-
-
             try
             {
-                // Read the file and display it line by line.  
+                /* Input File 읽기 - 같은 경로에 위치한 input.txt */
                 System.IO.StreamReader file = new System.IO.StreamReader(@".\input.txt");
                 Console.WriteLine("텍스트 나누는 중...");
                 while ((line = file.ReadLine()) != null)
@@ -36,18 +32,16 @@ namespace KMlinebreaker
 
                         for (int i = 0; i < splited.Length; i++)
                         {
-                            ////Console.WriteLine("str : {0}", str);
-                            // 한 줄 길이 120이 이하일 경우
                             string str = splited[i];
                             int strLen = str.Length + 1;
-                            //Console.WriteLine("char count {0}", charCounter);
-
+                            
+                            /* Text 길이 총합이 LEN 이하일 경우 */
                             if (charCounter + strLen <= LEN)
                             {
                                 output += i == 0 ? str : " " + str;
                                 charCounter += strLen;
                             }
-                            // 1줄 길이 120 초과하기 전
+                            /* LEN을 초과할 경우 */
                             else
                             {
                                 output += Environment.NewLine;
@@ -56,33 +50,27 @@ namespace KMlinebreaker
                             }
                             //Console.WriteLine("output : ");
                             //Console.WriteLine(output);
-
                         }
                     }
-                    //Console.WriteLine("OUTPUT : {0}", output );
                     output += Environment.NewLine;
                 }
-
                 file.Close();
+                
             } catch(FileNotFoundException ex)
             {
+                /* Input 파일이 위치하지 않았을 경우 */ 
                 Console.WriteLine("파일을 찾을 수 없습니다. 동일한 폴더에 Input 파일(.txt)을 추가해주세요.");
             } 
 
             //Console.WriteLine("SPLITED : {0}", file);
-
-            // Suspend the screen.  
-   //         System.Console.ReadLine();
-
+            
+            /* 출력 파일 생성 */
             string path = @".\output.txt";
             if (!File.Exists(path))
             {
                 using (File.Create(path))
                 {
-                    //Console.WriteLine("File Created !");
-
-                    // Create a file to write to.
-                    
+                    Console.WriteLine("Output 파일이 생성되엇습니다.");
                 }
             }
             using (StreamWriter sw = File.CreateText(path))
