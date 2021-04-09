@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace KMlinebreaker
+namespace KMinebreaker
 {
     class Program
     {
@@ -20,7 +20,6 @@ namespace KMlinebreaker
                 Console.WriteLine("텍스트 나누는 중...");
                 while ((line = file.ReadLine()) != null)
                 {
-                    //Console.WriteLine("line : {0}", line);
                     if (line.Length < LEN)
                     {
                         output += line;
@@ -61,8 +60,6 @@ namespace KMlinebreaker
                 /* Input 파일이 위치하지 않았을 경우 */ 
                 Console.WriteLine("파일을 찾을 수 없습니다. 동일한 폴더에 Input 파일(.txt)을 추가해주세요.");
             } 
-
-            //Console.WriteLine("SPLITED : {0}", file);
             
             /* 출력 파일 생성 */
             string path = @".\output.txt";
